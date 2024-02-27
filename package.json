@@ -25,7 +25,7 @@
     "url": "https://github.com/eightnineight/intelhex-codec/issues"
   },
   "homepage": "https://github.com/eightnineight/intelhex-codec#readme",
-  "devDependencies": {
+  "dependencies": {
     "sprintf-js": "^1.1.3"
   }
 }
