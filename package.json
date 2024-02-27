@@ -1,0 +1,31 @@
+{
+  "name": "@eightnineight/intelhex-codec",
+  "version": "1.1.6",
+  "description": "polling alarm",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eightnineight/intelhex-codec.git"
+  },
+  "keywords": [
+    "intel",
+    "hex",
+    "intelhex",
+    "codec",
+    "parser"
+  ],
+  "author": "CHIH-HSIN HSU",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eightnineight/intelhex-codec/issues"
+  },
+  "homepage": "https://github.com/eightnineight/intelhex-codec#readme",
+  "devDependencies": {
+    "sprintf-js": "^1.1.3"
+  }
+}
