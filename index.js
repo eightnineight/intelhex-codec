@@ -36,8 +36,8 @@ const hex2byte = (hex) => {
 
 class intelhexCodec {
     static encode = class {
-        static asArray = (input) => {
-
+        static asString = (input) => {
+            
         };
     };
 
@@ -222,7 +222,7 @@ class intelhexCodec {
             return newBlocks;
         }
 
-        static fromArray = (input) => {
+        static fromString = (input) => {
             input = [...input];
             const fieldsOfLines = [];
             const lines = this.#split2Lines(input);
@@ -246,7 +246,7 @@ let output = await fs.open('./output.txt', 'w');
 let data = await file.readFile();
 
 try {
-    const blocks = intelhexCodec.decode.fromArray(data);
+    const blocks = intelhexCodec.decode.fromString(data);
 } catch (e) {
     console.log('===:', e)
 }
