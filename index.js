@@ -130,33 +130,18 @@ class intelhexCodec {
     };
 
     static decode = class {
-        static #split2Lines = (input) => {
-            const lines = [];
-            let line = [];
-
-            for (let byte of input) {
-                if (byte === 0x0a || byte === 0x0d) {
-                    if (line.length) {
-                        while (line[0] === 0x20 || line[0] === 0x09) {
-                            line.shift();
-                        }
-                    }
-                    if (line.length) {
-                        while (line.at(-1) === 0x20 || line.at(-1) === 0x09) {
-                            line.pop();
-                        }
-                    }
-                    if (line.length) {
-                        lines.push(line);
-                    }
-                    line = [];
-                } else {
-                    line.push(byte);
-                }
-            }
-            return lines;
+        static #string2lines = (string) => {
+            return string.split(/[\r\n]/).map((line) => {
+                return line.trim();
+            }).filter((line) => {
+                return line !== '';
+            }).map((line) => {
+                return [...line].map((item) => {
+                    return item.charCodeAt(0);
+                });
+            });
         }
-        static #splitLine2Records = (line) => {
+        static #line2record = (line) => {
             if (line[0] !== ':'.charCodeAt(0)) {
                 throw 'ERR_WRONG_FORMAT';
             }
@@ -239,7 +224,7 @@ class intelhexCodec {
             return records;
         }
 
-        static #records2Blocks(records) {
+        static #records2blocks(records) {
             const blocks = [];
             let startAddress = 0;
 
@@ -315,13 +300,18 @@ class intelhexCodec {
         }
 
         static fromString = (input) => {
-            input = [...input];
-            const records = [];
-            const lines = this.#split2Lines(input);
-            for (let line of lines) {
-                records.push(this.#splitLine2Records(line));
+            if (typeof (input) !== 'string') {
+                input = [...input].map((item) => {
+                    return String.fromCharCode(item);
+                }).join('');
             }
-            const blocks = this.#records2Blocks(records);
+
+            const records = [];
+            const lines = this.#string2lines(input);
+            for (let line of lines) {
+                records.push(this.#line2record(line));
+            }
+            const blocks = this.#records2blocks(records);
             return this.#mergeBlocks(blocks);
         };
     };
@@ -330,3 +320,13 @@ class intelhexCodec {
 export {
     intelhexCodec,
 };
+
+import fs from 'fs/promises';
+
+let file = await fs.open('./test.hex');
+let inputString = await file.readFile();
+const blocks = intelhexCodec.decode.fromString(inputString);
+const hexString = intelhexCodec.encode.asString(blocks);
+await fs.writeFile('./output.hex', hexString);
+const hexString2 = intelhexCodec.encode.asString(blocks, 10);
+await fs.writeFile("./output2.hex", hexString2);
