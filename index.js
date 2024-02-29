@@ -125,7 +125,7 @@ class intelhexCodec {
                 hexString.push(...line);
             }
 
-            return hexString;
+            return hexString.join('');
         };
     };
 

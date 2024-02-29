@@ -1,7 +1,7 @@
 {
   "name": "@eightnineight/intelhex-codec",
-  "version": "1.1.6",
-  "description": "polling alarm",
+  "version": "1.0.0",
+  "description": "intel HEX format codec",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -17,6 +17,8 @@
     "hex",
     "intelhex",
     "codec",
+    "encode",
+    "decode",
     "parser"
   ],
   "author": "CHIH-HSIN HSU",
