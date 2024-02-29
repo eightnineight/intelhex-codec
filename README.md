@@ -21,3 +21,18 @@ const hexString = intelhexCodec.encode.asString(blocks);
 await fs.writeFile('./output.hex', hexString);
 
 ```
+
+```js
+//Blocks format example
+const blocks = [
+    { // block 1
+        address: address1, // block 1 data start address
+        data: [...], // block 1 data
+    },
+    { // block 2
+        address: address2, // block 2 data start address
+        data: [...], // block 2 data
+    },
+    //...
+];
+```

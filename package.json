@@ -1,6 +1,6 @@
 {
   "name": "@eightnineight/intelhex-codec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "intel HEX format codec",
   "main": "index.js",
   "type": "module",
