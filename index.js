@@ -320,13 +320,3 @@ class intelhexCodec {
 export {
     intelhexCodec,
 };
-
-import fs from 'fs/promises';
-
-let file = await fs.open('./test.hex');
-let inputString = await file.readFile();
-const blocks = intelhexCodec.decode.fromString(inputString);
-const hexString = intelhexCodec.encode.asString(blocks);
-await fs.writeFile('./output.hex', hexString);
-const hexString2 = intelhexCodec.encode.asString(blocks, 10);
-await fs.writeFile("./output2.hex", hexString2);
