@@ -100,11 +100,11 @@ class intelhexCodec {
                 } else {
                     blocks.push({
                         address: block.address,
-                        data: block.slice(0, 65536),
+                        data: block.data.slice(0, 65536),
                     });
-                    block.push({
+                    blocks.push({
                         address: block.address + 65536,
-                        data: block.slice(65536),
+                        data: block.data.slice(65536),
                     });
                 }
             }
